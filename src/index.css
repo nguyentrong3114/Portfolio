@@ -1,68 +1,99 @@
+@import "tailwindcss";
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+html {
+  @apply transition-colors duration-200;
 }
 
+html.dark {
+  @apply bg-black text-white;
+}
+
+html.light {
+  @apply bg-gray-50 text-gray-900;
+}
+  
 body {
-  margin: 0;
+  @apply min-h-screen;
+}
+/* focus */
+.focus-container {
+  position: relative;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.focus-word {
+  position: relative;
+  font-size: 3rem;
+  font-weight: 900;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  transition:
+    filter 0.3s ease,
+    color 0.3s ease;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.focus-word.active {
+  filter: blur(0);
+}
+
+.focus-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: content-box;
+  border: none;
+}
+
+.corner {
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  border: 3px solid var(--border-color, #fff);
+  filter: drop-shadow(0px 0px 4px var(--border-color, #fff));
+  border-radius: 3px;
+  transition: none;
+}
+
+.top-left {
+  top: -10px;
+  left: -10px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.top-right {
+  top: -10px;
+  right: -10px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.bottom-left {
+  bottom: -10px;
+  left: -10px;
+  border-right: none;
+  border-top: none;
+}
+
+.bottom-right {
+  bottom: -10px;
+  right: -10px;
+  border-left: none;
+  border-top: none;
+}
+/* Scroll */
+
+
+.hidden-section.show {
+  opacity: 1;
+  transform: translateX(0);
 }
