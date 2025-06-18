@@ -5,10 +5,6 @@
 
 }
 
-html {
-  @apply transition-colors duration-200;
-}
-
 html.dark {
   @apply bg-black text-white;
 }

@@ -3,11 +3,11 @@ import { motion } from "framer-motion";
 import SplitText from "../components/splitText";
 import ButtonEffect from "../components/button";
 import Box from "../components/box";
-
+import Stack from "../components/stack";
 
 const Home = () => {
     const profileRef = useRef(null);
-
+    
     const demoItems = [
         { text: 'REACT JS' }, { text: 'NEXT JS' }, { text: '.NET' }, { text: 'NODE JS' },
         { text: 'MONGO DB' }, { text: 'SQL SERVER' }, { text: 'MYSQL' }, { text: 'POSTGRESQL' },
@@ -17,9 +17,60 @@ const Home = () => {
         { text: 'C#' }, { text: 'Typescript' }, { text: 'Tailwind CSS' }, { text: 'Framer Motion' },
         { text: 'Git' }, { text: 'Docker' }, { text: 'HTML' }, { text: 'CSS' },
     ];
+    const images = [
+        { id: 1, img: "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=500&auto=format" },
+        { id: 2, img: "https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=500&auto=format" },
+        { id: 3, img: "https://images.unsplash.com/photo-1452626212852-811d58933cae?q=80&w=500&auto=format" },
+        { id: 4, img: "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=500&auto=format" }
+    ];
     return (
         <main className="min-h-screen transition-colors duration-200">
-
+            <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
+                {/* Video background */}
+                <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover z-0"
+                    src="/src/assets/videos/demo1.mp4"
+                />
+                <div className="absolute inset-0 bg-gradient-to-ropacity-50 z-10 pointer-events-none" />
+                {/* Đẩy content xuống gần cuối video */}
+                <div className="absolute bottom-10 left-0 right-0 z-20 w-full">
+                    <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
+                        <div>
+                            <motion.a
+                                href="#discover"
+                                className="group mt-8 text-white text-2xl hover:text-yellow-300 transition"
+                                initial={{ opacity: 0, y: 40 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 1.2, ease: 'easeOut' }}
+                            >
+                                DISCOVER MORE
+                                <span className="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span>
+                            </motion.a>
+                        </div>
+                        {/* Menu hoặc nội dung bên phải */}
+                        <div className="flex flex-col items-end gap-2">
+                            <div className="text-white text-2xl md:text-4xl max-w-lg text-left w-full flex flex-wrap ho">
+                                <SplitText
+                                    text="Hire Me"
+                                    className="text-4xl font-bold hover:text-yellow-300 transition cursor-pointer"
+                                    delay={100}
+                                    duration={0.6}
+                                    ease="power3.out"
+                                    splitType="chars"
+                                    from={{ opacity: 0, y: 20 }}
+                                    to={{ opacity: 1, y: 0 }}
+                                    threshold={0.1}
+                                    rootMargin="0px"
+                                    textAlign="left" />                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
             {/* Hero Section */}
             <section className="pt-32 pb-20 px-6">
                 <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
@@ -139,18 +190,19 @@ const Home = () => {
                 </div>
             </section >
             {/* About Section */}
-            <section className="py-20" >
-                <div className="container mx-auto px-6">
-                    <motion.h2
-                        className="text-3xl font-bold text-center mb-12"
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                    >
-                        Giới Thiệu
-                    </motion.h2>
-                    <div className="max-w-3xl mx-auto">
+            <section className="py-20 w-full bg-transparent">
+                <div className="container mx-auto flex flex-col md:flex-row items-center justify-center gap-12 px-6">
+                    {/* Left: Text */}
+                    <div className="flex-1 max-w-xl">
+                        <motion.h2
+                            className="text-3xl font-bold text-center md:text-left mb-8"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                        >
+                            Giới Thiệu
+                        </motion.h2>
                         <motion.p
                             className="mb-4"
                             initial={{ opacity: 0, y: 20 }}
@@ -158,9 +210,10 @@ const Home = () => {
                             viewport={{ once: true }}
                             transition={{ duration: 0.7, delay: 0.2 }}
                         >
-                            Tôi là một Frontend Developer với niềm đam mê tạo ra những trải nghiệm web tuyệt vời.
-                            Với kinh nghiệm trong việc phát triển các ứng dụng web hiện đại, tôi luôn tìm kiếm
-                            những thách thức mới để phát triển bản thân.
+                            Tôi là một Backend Developer với niềm đam mê trong việc xây dựng các ứng dụng web
+                            hiệu quả và dễ bảo trì. Tôi có kinh nghiệm làm việc với các công nghệ như Node.js,
+                            Express.js và MongoDB, và tôi luôn tìm kiếm cách để cải thiện hiệu suất và bảo mật
+                            của ứng dụng.
                         </motion.p>
                         <motion.p
                             className="mb-4"
@@ -173,6 +226,16 @@ const Home = () => {
                             TypeScript và Tailwind CSS. Tôi cũng rất chú trọng đến việc tạo ra giao diện
                             người dùng đẹp mắt và trải nghiệm người dùng tốt.
                         </motion.p>
+                    </div>
+                    {/* Right: Stack images */}
+                    <div className="flex-1 flex justify-center">
+                        <Stack
+                            randomRotation={true}
+                            sensitivity={180}
+                            sendToBackOnClick={false}
+                            cardDimensions={{ width: 400, height: 400 }}
+                            cardsData={images}
+                        />
                     </div>
                 </div>
             </section>
@@ -239,8 +302,9 @@ const Home = () => {
                     </div>
                 </div>
             </section>
+
         </main >
     );
 };
 
-export default Home; 
+export default Home;

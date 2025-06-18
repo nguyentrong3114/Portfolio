@@ -1,4 +1,4 @@
-import { createContext, useContext, useLayoutEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 type Theme = 'light' | 'dark';
 
@@ -9,19 +9,37 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  // Mặc định là dark, không cần kiểm tra localStorage
-  const [theme, setTheme] = useState<Theme>('dark');
+// Hàm lấy theme mặc định ngay khi khởi tạo app
+const getInitialTheme = (): Theme => {
+  if (typeof window !== 'undefined') {
+    const storedTheme = localStorage.getItem('theme') as Theme | null;
+    if (storedTheme) return storedTheme;
 
-  useLayoutEffect(() => {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return prefersDark ? 'dark' : 'light';
+  }
+
+  // Mặc định nếu đang server-side
+  return 'dark';
+};
+
+export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
+  const [isThemeReady, setIsThemeReady] = useState(false);
+
+  useEffect(() => {
     const root = document.documentElement;
     root.classList.remove('light', 'dark');
     root.classList.add(theme);
+    localStorage.setItem('theme', theme);
+    setIsThemeReady(true);
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
   };
+
+  if (!isThemeReady) return null; // Đợi theme sẵn sàng mới render app
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
