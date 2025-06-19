@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 const projectsData = [
   {
     title: "AM Perfume",
-    image: "/src/assets/img/perfume.png",
+    image: "/public/assets/img/perfume.png",
     category: "E-commerce Platform",
     description: "Modern perfume e-commerce platform with elegant design and seamless shopping experience.",
     technologies: ["Next JS", ".NET", "MYSQL"],
@@ -12,7 +12,7 @@ const projectsData = [
   },
   {
     title: "App Chat",
-    image: "/src/assets/img/chat1.webp",
+    image: "/public/assets/img/chat1.webp",
     category: "Real-time Communication",
     description: "Secure messaging app with end-to-end encryption and group chat features.",
     technologies: ["React Native", "Socket.io", "Firebase"],
@@ -20,7 +20,7 @@ const projectsData = [
   },
   {
     title: "App Reminder",
-    image: "/src/assets/img/reminder.png",
+    image: "/public/assets/img/reminder.png",
     category: "Productivity Tool",
     description: "Smart reminder app with AI-powered scheduling and cross-platform synchronization.",
     technologies: ["Flutter", "Firebase"],
@@ -221,7 +221,7 @@ export default function Projects() {
         >
           <h2 className="text-4xl font-bold mb-8">Ready to start a project?</h2>
           <motion.a
-            href="/"
+            href="https://www.facebook.com/nguyen.trong.353207"
             className="inline-flex items-center border-2 border-blue-500 gap-2 px-8 py-4  font-semibold rounded-full hover:shadow-lg transition-shadow"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
