@@ -50,20 +50,20 @@ export default function Footer() {
                     <div className="space-y-4">
                         <h3 className="text-lg font-semibold">Liên hệ</h3>
                         <div className="flex space-x-4">
-                            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" 
-                               className="hover:scale-110 transition-transform">
+                            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer"
+                                className="hover:scale-110 transition-transform">
                                 <FaGithub size={20} />
                             </a>
                             <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer"
-                               className="hover:scale-110 transition-transform">
+                                className="hover:scale-110 transition-transform">
                                 <FaLinkedin size={20} />
                             </a>
-                            <a href="mailto:your.email@example.com"
-                               className="hover:scale-110 transition-transform">
+                            <a href="mailto:nguyensangtrong31012004@gmail.com"
+                                className="hover:scale-110 transition-transform">
                                 <FaEnvelope size={20} />
                             </a>
-                            <a href="https://facebook.com/yourusername" target="_blank" rel="noopener noreferrer"
-                               className="hover:scale-110 transition-transform">
+                            <a href="https://www.facebook.com/nguyen.trong.353207/" target="_blank" rel="noopener noreferrer"
+                                className="hover:scale-110 transition-transform">
                                 <FaFacebook size={20} />
                             </a>
                         </div>

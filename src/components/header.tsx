@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from 'framer-motion';
@@ -21,8 +21,10 @@ const Header = () => {
   const fontSize = useTransform(scrollY, [0, 400], [72, 24]); 
   const springScale = useSpring(scale, { stiffness: 200, damping: 30 });
   const springFontSize = useSpring(fontSize, { stiffness: 200, damping: 30 });
-
   useEffect(() => {
+    // Khởi tạo giá trị scroll ban đầu ngay khi component mount
+    scrollY.set(window.scrollY);
+    
     const handleScroll = () => {
       scrollY.set(window.scrollY);
     };
@@ -35,22 +37,18 @@ const Header = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Variants cho hiệu ứng nổi lên tuần tự từ dưới lên trên
   const containerVariants = {
     visible: {
       transition: {
         staggerChildren: 0.15,
       },
     },
-  };
-
-  const itemVariants = {
+  };  const itemVariants = {
     hidden: { opacity: 0, y: 60, filter: "blur(8px)" },
     visible: {
       opacity: 1,
       y: 0,
       filter: "blur(0px)",
-      transition: { duration: 0.5, ease: "easeOut" },
     },
   };
 

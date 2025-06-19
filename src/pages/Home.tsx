@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import SplitText from "../components/splitText";
 import ButtonEffect from "../components/button";
 import Box from "../components/box";
@@ -7,7 +7,14 @@ import Stack from "../components/stack";
 
 const Home = () => {
     const profileRef = useRef(null);
-    
+    const { scrollY } = useScroll();
+
+    const videoHeight = useTransform(scrollY, [0, 800], [100, 50], { clamp: false });
+    const videoHeightVH = useTransform(videoHeight, (h) => `${h}vh`);
+
+    const mouseOpacity = useTransform(scrollY, [0, 200], [1, 0]);
+    const mouseTranslateY = useTransform(scrollY, [0, 200], [0, 40]);
+
     const demoItems = [
         { text: 'REACT JS' }, { text: 'NEXT JS' }, { text: '.NET' }, { text: 'NODE JS' },
         { text: 'MONGO DB' }, { text: 'SQL SERVER' }, { text: 'MYSQL' }, { text: 'POSTGRESQL' },
@@ -25,9 +32,10 @@ const Home = () => {
     ];
     return (
         <main className="min-h-screen transition-colors duration-200">
-            <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
+            <section className="sticky w-full min-h-screen flex items-center justify-center overflow-hidden">
                 {/* Video background */}
-                <video
+                <motion.video
+                    style={{ height: videoHeightVH }}
                     autoPlay
                     loop
                     muted
@@ -36,43 +44,36 @@ const Home = () => {
                     src="/src/assets/videos/demo1.mp4"
                 />
                 <div className="absolute inset-0 bg-gradient-to-ropacity-50 z-10 pointer-events-none" />
-                {/* Đẩy content xuống gần cuối video */}
-                <div className="absolute bottom-10 left-0 right-0 z-20 w-full">
-                    <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
-                        <div>
-                            <motion.a
-                                href="#discover"
-                                className="group mt-8 text-white text-2xl hover:text-yellow-300 transition"
-                                initial={{ opacity: 0, y: 40 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 1.2, ease: 'easeOut' }}
-                            >
-                                DISCOVER MORE
-                                <span className="inline-block transition-transform duration-300 group-hover:translate-x-2">&rarr;</span>
-                            </motion.a>
-                        </div>
-                        {/* Menu hoặc nội dung bên phải */}
-                        <div className="flex flex-col items-end gap-2">
-                            <div className="text-white text-2xl md:text-4xl max-w-lg text-left w-full flex flex-wrap ho">
-                                <SplitText
-                                    text="Hire Me"
-                                    className="text-4xl font-bold hover:text-yellow-300 transition cursor-pointer"
-                                    delay={100}
-                                    duration={0.6}
-                                    ease="power3.out"
-                                    splitType="chars"
-                                    from={{ opacity: 0, y: 20 }}
-                                    to={{ opacity: 1, y: 0 }}
-                                    threshold={0.1}
-                                    rootMargin="0px"
-                                    textAlign="left" />                                
-                            </div>
-                        </div>
+                <motion.div
+                    className="absolute left-1/2 transform -translate-x-1/2 z-20 cursor-pointer group"
+                    style={{
+                        bottom: '2vh',
+                        opacity: mouseOpacity,
+                        y: mouseTranslateY,
+                    }}
+                    whileHover={{ scale: 1.1 }}
+                    onClick={() => {
+                        const nextSection = document.getElementById("discover");
+                        if (nextSection) {
+                            nextSection.scrollIntoView({ behavior: "smooth" });
+                        }
+                    }}
+                >
+                    <div className="w-[30px] h-[50px] border-2 border-white rounded-full flex items-start justify-center relative">
+                        <motion.div
+                            className="w-[6px] h-[10px] bg-white rounded-full mt-1"
+                            animate={{ y: [0, 5, 0] }}
+                            transition={{ repeat: Infinity, duration: 1.5 }}
+                        />
                     </div>
-                </div>
+                    <span className="mt-2 text-white text-sm block text-center opacity-60 group-hover:opacity-100 transition">
+                        Scroll
+                    </span>
+                </motion.div>
+
             </section>
             {/* Hero Section */}
-            <section className="pt-32 pb-20 px-6">
+            <section id="discover" className="pt-32 pb-20 px-6">
                 <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
                     <div className="md:w-1/2 mb-14 md:mb-0">
                         <motion.h1
