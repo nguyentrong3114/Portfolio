@@ -127,7 +127,7 @@ export default function AudioPlayer() {
     <div className="w-full border-2 max-w-md mx-auto  rounded-xl shadow-lg p-6 flex flex-col items-center gap-4">
       <audio
         ref={audioRef}
-        src={tracks[current].src}
+        src={tracks[current]?.src}
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}
         onEnded={handleEnded}
@@ -140,14 +140,14 @@ export default function AudioPlayer() {
         style={{ background: "#fff" }}
       >
         <img
-          src={tracks[current].cover}
-          alt={tracks[current].title}
+          src={tracks[current]?.cover}
+          alt={tracks[current]?.title}
           className="w-24 h-24 rounded-full object-cover"
         />
       </motion.div>
       <div className="text-center">
-        <div className="font-bold text-lg">{tracks[current].title}</div>
-        <div className="text-sm text-blue-500">{tracks[current].artist}</div>
+        <div className="font-bold text-lg">{tracks[current]?.title}</div>
+        <div className="text-sm text-blue-500">{tracks[current]?.artist}</div>
       </div>
       <div className="flex items-center w-full gap-2 relative">
         {/* Volume button + slider (absolute, overlay) */}
@@ -190,9 +190,8 @@ export default function AudioPlayer() {
               }}
               className="h-24 w-2 accent-blue-500  rounded-lg appearance-none cursor-pointer volume-slider"
               style={{
-                writingMode: "bt-lr",
+                writingMode: "vertical-lr",
                 WebkitAppearance: "slider-vertical",
-                appearance: "slider-vertical",
               }}
             />
             <span className="text-xs  px-1 rounded">{Math.round((muted ? 0 : volume) * 100)}</span>

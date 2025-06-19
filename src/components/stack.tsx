@@ -85,7 +85,9 @@ export default function Stack({
       const newCards = [...prev];
       const index = newCards.findIndex((card) => card.id === id);
       const [card] = newCards.splice(index, 1);
-      newCards.unshift(card);
+      if (card) {
+        newCards.unshift(card);
+      }
       return newCards;
     });
   };

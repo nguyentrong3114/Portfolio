@@ -25,7 +25,7 @@ export default function Box({
   separator = "",
   onStart,
   onEnd,
-}: CountUpProps) {
+}: BoxProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const motionValue = useMotionValue(direction === "down" ? to : from);
 
