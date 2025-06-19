@@ -11,7 +11,7 @@ function AnimatedSection({
     reverse?: boolean;
 }) {
     const ref = useRef(null);
-    const inView = useInView(ref, { once: true, threshold: 0.2 });
+    const inView = useInView(ref, { once: true });
     const controls = useAnimation();
 
     useEffect(() => {

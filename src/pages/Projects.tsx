@@ -6,28 +6,33 @@ const projectsData = [
     image: "/src/assets/img/perfume.png",
     category: "E-commerce Platform",
     description: "Modern perfume e-commerce platform with elegant design and seamless shopping experience.",
-    technologies: ["Next JS", ".NET", "MYSQL"]
+    technologies: ["Next JS", ".NET", "MYSQL"],
+    link: ["https://github.com/nguyentrong3114/FE-PerfumeStore","https://github.com/nguyentrong3114/BE-PerfumeStore","https://github.com/nguyentrong3114/FE-AdminAMPerfume"],
+    
   },
   {
     title: "App Chat",
     image: "/src/assets/img/chat1.webp",
     category: "Real-time Communication",
     description: "Secure messaging app with end-to-end encryption and group chat features.",
-    technologies: ["React Native", "Socket.io", "Firebase"]
+    technologies: ["React Native", "Socket.io", "Firebase"],
+    link: "https://github.com/nguyentrong3114/AppChat",
   },
   {
     title: "App Reminder",
     image: "/src/assets/img/reminder.png",
     category: "Productivity Tool",
     description: "Smart reminder app with AI-powered scheduling and cross-platform synchronization.",
-    technologies: ["Flutter", "Firebase"]
+    technologies: ["Flutter", "Firebase"],
+    link: "https://github.com/nguyentrong3114/appreminder",
   },
   {
     title: "Flower Store",
     image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?q=80&w=800&auto=format",
     category: "E-commerce & Lifestyle",
     description: "Beautiful flower delivery platform with real-time inventory and local florist network.",
-    technologies: ["HTML","CSS","Bootstrap" ,"ASP .NET", "SQL Server"]
+    technologies: ["HTML","CSS","Bootstrap" ,"ASP .NET", "SQL Server"],
+    link: "https://github.com/nguyentrong3114/laptrinhweb",
   }
 ];
 
@@ -109,21 +114,40 @@ export default function Projects() {
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.4 }}
                   />
-                  <div className="absolute inset-0  transition-all duration-300" />
-
-                  {/* Overlay content */}
+                  <div className="absolute inset-0  transition-all duration-300" />                  {/* Overlay content */}
                   <motion.div
                     initial={{ opacity: 0 }}
                     whileHover={{ opacity: 1 }}
-                    className="absolute inset-0 flex items-center justify-center"
+                    className="absolute inset-0 flex items-center justify-center bg-black/40"
                   >
-                    <motion.button
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="bg-white text-black px-8 py-3 rounded-full font-semibold shadow-lg"
-                    >
-                      View Project
-                    </motion.button>
+                    <div className="flex gap-4 flex-wrap justify-center">
+                      {Array.isArray(project.link)
+                        ? project.link.map((l, i) => (
+                            <motion.a
+                              key={i}
+                              href={l}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              whileHover={{ scale: 1.1 }}
+                              whileTap={{ scale: 0.95 }}
+                              className="bg-transparent border-2 border-white text-white px-6 py-2 rounded-full font-semibold hover:bg-white hover:text-black transition-colors"
+                            >
+                              {['Frontend', 'Backend', 'Admin'][i] || `Source Code ${i+1}`}
+                            </motion.a>
+                          ))
+                        : project.link && (
+                            <motion.a
+                              href={project.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              whileHover={{ scale: 1.1 }}
+                              whileTap={{ scale: 0.95 }}
+                              className="bg-transparent border-2 border-white text-white px-6 py-2 rounded-full font-semibold hover:bg-white hover:text-black transition-colors"
+                            >
+                              Source Code
+                            </motion.a>
+                          )}
+                    </div>
                   </motion.div>
                 </div>
                 <motion.div
@@ -136,7 +160,7 @@ export default function Projects() {
                   <h2 className="text-3xl font-bold mb-2">{project.title}</h2>
                   <p className="text-lg opacity-70 mb-3">{project.category}</p>
                   <p className="text-sm opacity-60 leading-relaxed mb-4">{project.description}</p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.map((tech, techIndex) => (
                       <span
                         key={techIndex}
@@ -145,6 +169,40 @@ export default function Projects() {
                         {tech}
                       </span>
                     ))}
+                  </div>
+                  
+                  {/* Project Links */}
+                  <div className="flex gap-4 pt-2 flex-wrap">
+                    {Array.isArray(project.link)
+                      ? project.link.map((l, i) => (
+                          <motion.a
+                            key={i}
+                            href={l}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 text-sm font-medium hover:opacity-70 transition-opacity"
+                            whileHover={{ x: 5 }}
+                          >
+                            <svg width={16} height={16} fill="none" stroke="currentColor" strokeWidth={2}>
+                              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                            </svg>
+                            {['Frontend', 'Backend', 'Admin'][i] || `Source Code ${i+1}`}
+                          </motion.a>
+                        ))
+                      : project.link && (
+                          <motion.a
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 text-sm font-medium hover:opacity-70 transition-opacity"
+                            whileHover={{ x: 5 }}
+                          >
+                            <svg width={16} height={16} fill="none" stroke="currentColor" strokeWidth={2}>
+                              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                            </svg>
+                            Source Code
+                          </motion.a>
+                        )}
                   </div>
                 </motion.div>
               </motion.div>
