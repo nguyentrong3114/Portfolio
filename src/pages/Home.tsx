@@ -41,7 +41,7 @@ const Home = () => {
                     muted
                     playsInline
                     className="absolute inset-0 w-full h-full object-cover z-0"
-                    src="/public/assets/videos/demo1.mp4"
+                    src="/assets/videos/demo1.mp4"
                 />
                 <div className="absolute inset-0 bg-gradient-to-ropacity-50 z-10 pointer-events-none" />
                 <motion.div
@@ -136,7 +136,7 @@ const Home = () => {
                     >
                         <div className="relative w-64 h-64 mx-auto">
                             <img
-                                src="/public/assets/anh.png"
+                                src="/assets/anh.png"
                                 alt="Profile"
                                 className="w-full h-full rounded-full object-cover ring-4 ring-gray-200 dark:ring-gray-700"
                             />

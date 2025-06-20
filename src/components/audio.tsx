@@ -5,20 +5,20 @@ const tracks = [
   {
     title: "Mashup",
     artist: "Nhiều Nghệ Sĩ",
-    src: "public/assets/music/mashup-remix.mp3",
-    cover: "public/assets/music/img/mashup.png",
+    src: "/assets/music/mashup-remix.mp3",
+    cover: "/assets/music/img/mashup.png",
   },
   {
     title: "Kịch bản tồi tệ",
     artist: "LBI Lợi Bỉ",
-    src: "public/assets/music/kichbantoite.mp3",
-    cover: "public/assets/music/img/kichbantoite.png",
+    src: "/assets/music/kichbantoite.mp3",
+    cover: "/assets/music/img/kichbantoite.png",
   },
   {
     title: "Tháp rơi tự do",
     artist: "LBI Lợi Bỉ",
-    src: "public/assets/music/thaproitudo.mp3",
-    cover: "public/assets/music/img/thaproitudo.png",
+    src: "/assets/music/thaproitudo.mp3",
+    cover: "/assets/music/img/thaproitudo.png",
   },
 ];
 
