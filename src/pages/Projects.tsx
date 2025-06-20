@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 const projectsData = [
   {
     title: "AM Perfume",
-    image: "/public/assets/img/perfume.png",
+    image: "/assets/img/perfume.png",
     category: "E-commerce Platform",
     description: "Modern perfume e-commerce platform with elegant design and seamless shopping experience.",
     technologies: ["Next JS", ".NET", "MYSQL"],
@@ -12,7 +12,7 @@ const projectsData = [
   },
   {
     title: "App Chat",
-    image: "/public/assets/img/chat1.webp",
+    image: "/assets/img/chat1.webp",
     category: "Real-time Communication",
     description: "Secure messaging app with end-to-end encryption and group chat features.",
     technologies: ["React Native", "Socket.io", "Firebase"],
@@ -20,7 +20,7 @@ const projectsData = [
   },
   {
     title: "App Reminder",
-    image: "/public/assets/img/reminder.png",
+    image: "/assets/img/reminder.png",
     category: "Productivity Tool",
     description: "Smart reminder app with AI-powered scheduling and cross-platform synchronization.",
     technologies: ["Flutter", "Firebase"],

@@ -40,31 +40,31 @@ const techTimeline = [
     {
         name: "HTML & CSS",
         desc: "Nắm vững HTML5, CSS3, Flexbox, Grid, Responsive Design.",
-        icon: "/src/assets/img/htmlcss.png",
+        icon: "/assets/img/htmlcss.png",
         time: "2021 - 2022",
     },
     {
         name: "JavaScript & TypeScript",
         desc: "Sử dụng thành thạo ES6+, TypeScript cho dự án lớn.",
-        icon: "/src/assets/img/js-ts.png",
+        icon: "/assets/img/js-ts.png",
         time: "2022 - 2023",
     },
     {
         name: "ReactJS & NextJS",
         desc: "Xây dựng SPA, SSR, tối ưu SEO với ReactJS và NextJS.",
-        icon: "/src/assets/img/react-next.png",
+        icon: "/assets/img/react-next.png",
         time: "2022 - 2023",
     },
     {
         name: ".NET",
         desc: "Phát triển API với ASP.NET Core, Entity Framework.",
-        icon: "/src/assets/img/dotnet.png",
+        icon: "/assets/img/dotnet.png",
         time: "2023",
     },
     {
         name: "NodeJS & ExpressJS",
         desc: "Xây dựng RESTful API, xác thực, bảo mật với NodeJS, ExpressJS.",
-        icon: "/src/assets/img/node-express.png",
+        icon: "/assets/img/node-express.png",
         time: "2023 - 2024",
     },
     {
@@ -202,7 +202,7 @@ export default function About() {
                 </div>
                 <div className="w-full md:w-1/2 flex justify-center">
                     <motion.img
-                        src="/src/assets/img/image.png"
+                        src="/assets/img/image.png"
                         alt="Project"
                         className="max-w-full rounded-lg shadow-xl"
                         initial={{ scale: 0.8, opacity: 0 }}
